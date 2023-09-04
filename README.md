@@ -16,14 +16,14 @@ The game's program flow reads like Play -> Ready -> Set -> Go, which implements 
     }
     End();
 
-The game UI is designed to align with the basic game construct described above, thus the methods to Start(), Move(), Continue(), GameOver() and End().
+The game UI is designed to align with the basic game construct described above, thus the methods to Start(), *Roll*(), Continue(), GameOver() and End().
 
 The game UX provides the capabilities to support game flow and game play interactions.
 
 Note that the GameConsoleDice project references the GameLibraryDice project.
 
 ## GameLibraryDice
-The dice and guessing game is defined in this library.
+The dice and guessing game are defined in this library. The guessing game itself is designed to align with the basic game construct described above, thus the methods to Start(), *Roll*(), Continue(), GameOver() and End().
 
 ## Native AOT
 The GameConsoleDice and GameLibraryDice projects are native AOT compatible/ready.
