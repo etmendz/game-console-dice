@@ -6,17 +6,20 @@ using GameLibrary;
 
 namespace GameConsoleDice;
 
-internal class GamePlay : IGamePlay<int, IEnumerable<int>>
+/// <summary>
+/// Defines the game play to guess and roll dice.
+/// </summary>
+internal class GamePlay(int sides = 6, int count = 2) : IGamePlay<int, IEnumerable<int>>
 {
     /// <summary>
     /// Gets or set the number of sides per die. Default is 6.
     /// </summary>
-    public int Sides { get; set; } = 6;
+    public int Sides { get; set; } = sides;
 
     /// <summary>
     /// Gets or sets the number of dice. Default is 2.
     /// </summary>
-    public int Count { get; set; } = 2;
+    public int Count { get; set; } = count;
 
     /// <summary>
     /// Gets the last guess.

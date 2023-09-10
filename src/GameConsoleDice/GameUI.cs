@@ -9,7 +9,7 @@ using System.Resources;
 namespace GameConsoleDice;
 
 /// <summary>
-/// Defines the game UI.
+/// Defines the game UI to guess and roll dice.
 /// </summary>
 internal class GameUI : IGameUI<GamePlay, int, IEnumerable<int>>
 {
@@ -19,7 +19,7 @@ internal class GameUI : IGameUI<GamePlay, int, IEnumerable<int>>
     public GamePlay GamePlay { get; set; }
 
     /// <summary>
-    /// Creates an instance of the <see cref="GameUI"/>.
+    /// Creates an instance of the game UI.
     /// </summary>
     public GameUI() => GamePlay = new();
 
@@ -158,6 +158,6 @@ internal class GameUI : IGameUI<GamePlay, int, IEnumerable<int>>
         GamePlay.End();
         Console.WriteLine();
         Console.WriteLine("Thanks for playing!");
-        Task.Delay(3000).Wait();
+        Task.Delay(1500).Wait();
     }
 }
