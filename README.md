@@ -4,6 +4,12 @@ How lucky are you? Guess, shake, rattle and roll the dice to find out!
 
 Uses the [GameLibrary](https://github.com/etmendz/game-library/wiki) framework to define the game play, game UI and overall game flow.
 
+The game UI implements IGameUI.
+
+The game play implements IGamePlay.
+
+Die, Dice and GameDice represent the dice used in the game.
+
 ## Native AOT
 The GameConsoleDice project is native AOT compatible/ready.
 

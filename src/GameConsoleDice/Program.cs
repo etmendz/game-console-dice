@@ -8,5 +8,9 @@ namespace GameConsoleDice;
 
 internal static class Program
 {
-    private static void Main() => new GameConsole<GameUI, GamePlay, int, IEnumerable<int>>("GameConsoleDice", "Mendz, etmendz. All rights reserved.", "A dice guessing game.").Play(); // Play the game!
+    private static void Main() => new GameConsole<GameUI, GamePlay, int, IEnumerable<int>>(
+        "GameConsoleDice", 
+        "Mendz, etmendz. All rights reserved.", 
+        "A dice guessing game."
+        ).Play(); // Play the game!
 }
