@@ -1,21 +1,22 @@
-﻿namespace GameLibraryDice;
+﻿/*
+* GameConsoleDice (c) Mendz, etmendz. All rights reserved. 
+* SPDX-License-Identifier: GPL-3.0-or-later 
+*/
+using GameLibrary;
 
-/// <summary>
-/// Defines a dice guessing game.
-/// </summary>
-/// <param name="sides">The number of sides per die. Default is 6.</param>
-/// <param name="count">The number of dice. Default is 2.</param>
-public class Guess(int sides = 6, int count = 2)
+namespace GameConsoleDice;
+
+internal class GamePlay : IGamePlay<int, IEnumerable<int>>
 {
     /// <summary>
-    /// Gets or set the number of sides per die.
+    /// Gets or set the number of sides per die. Default is 6.
     /// </summary>
-    public int Sides { get; set; } = sides;
+    public int Sides { get; set; } = 6;
 
     /// <summary>
-    /// Gets or sets the number of dice.
+    /// Gets or sets the number of dice. Default is 2.
     /// </summary>
-    public int Count { get; set; } = count;
+    public int Count { get; set; } = 2;
 
     /// <summary>
     /// Gets the last guess.
@@ -55,7 +56,7 @@ public class Guess(int sides = 6, int count = 2)
     /// <summary>
     /// Starts the game.
     /// </summary>
-    public void Start()
+    public bool Start()
     {
         LastGuess = 0;
         LastRoll = 0;
@@ -64,6 +65,7 @@ public class Guess(int sides = 6, int count = 2)
         RollCount = 0;
         Luck = 0;
         Quit = false;
+        return true;
     }
 
     /// <summary>
@@ -71,7 +73,7 @@ public class Guess(int sides = 6, int count = 2)
     /// </summary>
     /// <param name="guess">The guess.</param>
     /// <returns>Yields the rolled side per die.</returns>
-    public IEnumerable<int> Roll(int guess)
+    public IEnumerable<int> Action(int guess)
     {
         int rolls = 0;
         foreach (int roll in Dice.Roll(Sides, Count))
@@ -79,32 +81,6 @@ public class Guess(int sides = 6, int count = 2)
             rolls += roll;
             yield return roll;
         }
-        EvaluateRoll(guess, rolls);
-    }
-
-    /// <summary>
-    /// Rolls the dice asynchronously.
-    /// </summary>
-    /// <param name="guess">The guess.</param>
-    /// <returns>Yields the rolled side per die.</returns>
-    public async IAsyncEnumerable<int> RollAsync(int guess)
-    {
-        int rolls = 0;
-        await foreach (int roll in Dice.RollAsync(Sides, Count))
-        {
-            rolls += roll;
-            yield return roll;
-        }
-        EvaluateRoll(guess, rolls);
-    }
-
-    /// <summary>
-    /// Evaluates the roll.
-    /// </summary>
-    /// <param name="guess">The guess.</param>
-    /// <param name="rolls">The total rolled sides.</param>
-    private void EvaluateRoll(int guess, int rolls)
-    {
         LastGuess = guess;
         LastRoll = rolls;
         IsWon = guess == rolls;
@@ -116,7 +92,11 @@ public class Guess(int sides = 6, int count = 2)
     /// <summary>
     /// Continues the game.
     /// </summary>
-    public void Continue() => IsWon = false;
+    public bool Continue()
+    {
+        IsWon = false;
+        return true;
+    }
 
     /// <summary>
     /// Determines if it's game over.

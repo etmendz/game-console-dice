@@ -1,72 +1,25 @@
-﻿namespace GameConsoleDice;
+﻿/*
+* GameConsoleDice (c) Mendz, etmendz. All rights reserved. 
+* SPDX-License-Identifier: GPL-3.0-or-later 
+*/
+namespace GameConsoleDice;
 
 /// <summary>
-/// Represents a cube dice with 6 sides.
+/// Provides methods to roll the dice.
 /// </summary>
-internal static class Dice
+public static class Dice
 {
-    private static readonly string _one = 
-        "---------" + Environment.NewLine +
-        "|       |" + Environment.NewLine +
-        "|   *   |" + Environment.NewLine +
-        "|       |" + Environment.NewLine +
-        "---------";
-    public static string One { get => _one; }
-
-    private static readonly string _two = 
-        "---------" + Environment.NewLine +
-        "|     * |" + Environment.NewLine +
-        "|       |" + Environment.NewLine +
-        "| *     |" + Environment.NewLine +
-        "---------";
-    public static string Two { get => _two; }
-
-
-    private static readonly string _three = 
-        "---------" + Environment.NewLine +
-        "|     * |" + Environment.NewLine +
-        "|   *   |" + Environment.NewLine +
-        "| *     |" + Environment.NewLine +
-        "---------";
-    public static string Three { get => _three; }
-
-    private static readonly string _four = 
-        "---------" + Environment.NewLine +
-        "| *   * |" + Environment.NewLine +
-        "|       |" + Environment.NewLine +
-        "| *   * |" + Environment.NewLine +
-        "---------";
-    public static string Four { get => _four; }
-
-    private static readonly string _five = 
-        "---------" + Environment.NewLine +
-        "| *   * |" + Environment.NewLine +
-        "|   *   |" + Environment.NewLine +
-        "| *   * |" + Environment.NewLine +
-        "---------";
-    public static string Five { get => _five; }
-
-    private static readonly string _six = 
-        "---------" + Environment.NewLine +
-        "| *   * |" + Environment.NewLine +
-        "| *   * |" + Environment.NewLine +
-        "| *   * |" + Environment.NewLine +
-        "---------";
-    public static string Six { get => _six; }
-
     /// <summary>
-    /// Draws the dice.
+    /// Rolls the dice.
     /// </summary>
-    /// <param name="side">The side to draw.</param>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown when the side passed is invalid.</exception>
-    public static void Draw(int side) => Console.WriteLine(side switch
+    /// <param name="sides">The number of sides per die. Default is 6.</param>
+    /// <param name="count">The number of dice. Default is 2.</param>
+    /// <returns>Yields each rolled side per die.</returns>
+    public static IEnumerable<int> Roll(int sides = 6, int count = 2)
     {
-        1 => One,
-        2 => Two,
-        3 => Three,
-        4 => Four,
-        5 => Five,
-        6 => Six,
-        _ => throw new ArgumentOutOfRangeException(nameof(side))
-    });
+        for (int i = 0; i < count; i++)
+        {
+            yield return Die.Roll(sides);
+        }
+    }
 }

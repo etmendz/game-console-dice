@@ -1,9 +1,10 @@
 ﻿/*
-* GameLibraryDice (c) Mendz, etmendz. All rights reserved. 
-* Part of GameConsoleDice
+* GameConsoleDice (c) Mendz, etmendz. All rights reserved. 
 * SPDX-License-Identifier: GPL-3.0-or-later 
 */
-namespace GameLibraryDice;
+using GameLibrary;
+
+namespace GameConsoleDice;
 
 /// <summary>
 /// Provides methods to roll a die.
@@ -15,5 +16,5 @@ public static class Die
     /// </summary>
     /// <param name="sides">The number of sides on the die. Default is 6.</param>
     /// <returns>The rolled side.</returns>
-    public static int Roll(int sides = 6) => Random.Shared.Next(1, sides + 1);
+    public static int Roll(int sides = 6) => GameRandomizer.Next(1, sides + 1);
 }
