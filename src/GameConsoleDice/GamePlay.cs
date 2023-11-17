@@ -9,7 +9,7 @@ namespace GameConsoleDice;
 /// <summary>
 /// Defines the game play to guess and roll dice.
 /// </summary>
-internal class GamePlay(int sides = 6, int count = 2) : IGamePlay<int, IEnumerable<int>>
+internal class GamePlay(int sides = 6, int count = 2) : IGamePlay
 {
     /// <summary>
     /// Gets or set the number of sides per die. Default is 6.
@@ -74,22 +74,28 @@ internal class GamePlay(int sides = 6, int count = 2) : IGamePlay<int, IEnumerab
     /// <summary>
     /// Rolls the dice.
     /// </summary>
-    /// <param name="guess">The guess.</param>
+    /// <param name="gameActionInfo">The game action info.</param>
     /// <returns>Yields the rolled side per die.</returns>
-    public IEnumerable<int> Action(int guess)
+    public bool Action(GameActionInfo gameActionInfo)
     {
+        int guess = (int)gameActionInfo.Input!;
+        int[] output = new int[Count];
         int rolls = 0;
+        int i = 0;
         foreach (int roll in Dice.Roll(Sides, Count))
         {
+            output[i] = roll;
             rolls += roll;
-            yield return roll;
+            i++;
         }
+        gameActionInfo.Output = output;
         LastGuess = guess;
         LastRoll = rolls;
         IsWon = guess == rolls;
         if (IsWon) WinCount++;
         RollCount++;
         Luck = (double)WinCount / (double)RollCount;
+        return true;
     }
 
     /// <summary>

@@ -16,5 +16,5 @@ public static class Die
     /// </summary>
     /// <param name="sides">The number of sides on the die. Default is 6.</param>
     /// <returns>The rolled side.</returns>
-    public static int Roll(int sides = 6) => GameRandomizer.Next(1, sides + 1);
+    public static int Roll(int sides = 6) => Random.Shared.Next(1, sides + 1);
 }

@@ -8,7 +8,7 @@ namespace GameConsoleDice;
 
 internal static class Program
 {
-    private static void Main() => new GameConsole<GameUI, GamePlay, int, IEnumerable<int>>(
+    private static void Main() => new GameConsole<GameUI, GamePlay>(
         "GameConsoleDice", 
         "Mendz, etmendz. All rights reserved.", 
         "A dice guessing game."
